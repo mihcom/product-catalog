@@ -34,5 +34,7 @@
   }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
+  select
+    height 30px
 </style>

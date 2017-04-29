@@ -17,7 +17,7 @@
 
     computed: {
       url () {
-        return `//www.pandora.net/assets/packshot?sku=${this.product['@id']}&format=jpg&width=236&height=190`
+        return `//www.pandora.net/assets/packshot?sku=${this.product['@id']}&format=png&width=236&height=190`
       },
 
       formatter () {
@@ -46,6 +46,12 @@
     flex-direction column
     padding 5px
     outline 1px solid rgba(192, 192, 192, 0.4)
+    cursor pointer
+    transition all .5s ease
+
+    &:hover
+      transform scale(0.95)
+      background-color cornsilk
 
     img
       width 236px

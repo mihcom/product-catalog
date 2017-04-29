@@ -1,7 +1,7 @@
 <template lang="pug">
   div(class="filters")
     collection-filter(v-for="filter in filters" :filter="filter" :key="filter['@key']")
-    a(class="clear-filters" href="#" @click.prevent="clearFilters") clear
+    a(class="clear-filters" href="#" @click.prevent="clearFilters" v-if="hasAppliedFilters") clear
 </template>
 
 <script>
@@ -31,7 +31,16 @@
           .map(buildFilter)
       },
 
-      ...mapState(['feed'])
+      hasAppliedFilters () {
+        return Object.entries(this.appliedFilters)
+            .filter(([, value]) => value !== '')
+            .length > 0
+      },
+
+      ...mapState({
+        feed: state => state.feed,
+        appliedFilters: state => state.filters
+      })
     },
 
     components: {'collection-filter': filter},
@@ -51,7 +60,6 @@
     display flex
     justify-content space-between
     align-items center
-    height 35px
     box-sizing border-box
     flex-shrink 0
 
