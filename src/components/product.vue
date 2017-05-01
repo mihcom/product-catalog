@@ -1,6 +1,6 @@
 <template lang="pug">
   div(class="product")
-    img(:src="url" :name="this.product['@name']")
+    img(:src="url", :name="this.product['@name']")
     div(class="price" v-html="price")
 </template>
 

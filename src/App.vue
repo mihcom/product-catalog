@@ -26,10 +26,10 @@
 </script>
 
 <style lang="stylus">
-  size = 1000px
+  size = 800px
 
   #app
-    width size
+    width size + 220px
     height size
     outline 1px solid silver
     position absolute
