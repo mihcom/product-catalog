@@ -1,7 +1,7 @@
 <template lang="pug">
-  div(class="filters")
+  div.filters
     collection-filter(v-for="filter in filters", :filter="filter", :key="filter['@key']")
-    a(class="clear-filters" href="#", @click.prevent="clearFilters" v-if="hasAppliedFilters") clear
+    a.clear-filters(href="#", @click.prevent="clearFilters" v-if="hasAppliedFilters") clear
 </template>
 
 <script>

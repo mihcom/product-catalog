@@ -1,11 +1,11 @@
 <template lang="pug">
-  div(class="products")
+  div.products
     filters
     transition(name="results-transition" mode="out-in")
       transition-group(tag="div" class="products-list" key="products" v-if="products && products.length" name="list-transition")
         product(v-for="product in products", :product="product", :key="product['@id']")
-        div(class="load-more" key="load-more", @click="loadMore", v-show="products.length < allProducts.length") Load more
-      div(class="no-results" key="no-products" v-if="products && !products.length")
+        div.load-more(key="load-more", @click="loadMore", v-show="products.length < allProducts.length") Load more
+      div.no-results(key="no-products" v-if="products && !products.length")
         div No products match selected criteria.
 </template>
 

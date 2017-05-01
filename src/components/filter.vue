@@ -1,5 +1,5 @@
 <template lang="pug">
-  select(class="filter" @change="setFilter" ref="select")
+  select.filter(@change="setFilter" ref="select")
     option(disabled :selected="nothingSelected") {{ filter['@key'] }}
     option(value="") {{ filter.allText }}
     option(v-for="item in filter.item", :key="item['@key']", :value="item['@key']", :selected="selected(item)") {{ item['@value'] }}

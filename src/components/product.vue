@@ -1,7 +1,7 @@
 <template lang="pug">
-  div(class="product")
+  div.product
     img(:src="url", :name="this.product['@name']")
-    div(class="price" v-html="price")
+    div.price(v-html="price")
 </template>
 
 <script>
