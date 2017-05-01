@@ -37,4 +37,5 @@
 <style lang="stylus" scoped>
   select
     height 30px
+    font-family inherit
 </style>

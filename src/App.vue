@@ -26,9 +26,12 @@
 </script>
 
 <style lang="stylus">
+  @import url('https://fonts.googleapis.com/css?family=Arvo')
+
   size = 800px
 
   #app
+    font-family 'Arvo', serif
     width size + 220px
     height size
     outline 1px solid silver
