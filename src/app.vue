@@ -28,12 +28,12 @@
 <style lang="stylus">
   @import url('https://fonts.googleapis.com/css?family=Arvo')
 
-  size = 800px
+  size = 95%
 
   #app
     font-family 'Arvo', serif
-    width size + 220px
-    height size
+    width 1050px
+    height 980px
     outline 1px solid silver
     position absolute
     left 50%

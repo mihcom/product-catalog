@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import productsCalulator from './services/products-calculator'
 
 Vue.use(Vuex)
 
@@ -13,18 +14,8 @@ const feedPlugin = store => {
     })
   })
 
-  store.watch(state => state.feed, function setProducts (feed) {
-    store.commit('products', feed.products.product)
-  })
-
   store.watch(state => state.filters, function calculateProducts (filters) {
-    const entries = Object.entries(filters).filter(([, value]) => value !== ''),
-      matchesFilters = product => entries.every(pair => {
-        const [dimension, value] = pair
-
-        return product[dimension] === value
-      }),
-      products = store.getters.feed.products.product.filter(matchesFilters)
+    const products = productsCalulator(store.getters.feed.products.product, filters)
 
     store.commit('products', products)
   })
@@ -36,12 +27,17 @@ export default new Vuex.Store({
   state: {
     feed: undefined,
     products: undefined,
+    releasedProducts: undefined,
     locale: undefined,
     filters: {}
   },
 
   mutations: {
-    feed (state, feed) { state.feed = feed },
+    feed (state, feed) {
+      state.releasedProducts = feed.products.product.filter(product => product['@state'] === 'released')
+      state.products = state.releasedProducts
+      state.feed = feed
+    },
     products (state, products) { state.products = products },
     locale (state, locale) { state.locale = locale },
     filter (state, filter) {

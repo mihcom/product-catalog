@@ -2,11 +2,12 @@
   select.filter(@change="setFilter" ref="select")
     option(disabled :selected="nothingSelected") {{ filter['@key'] }}
     option(value="") {{ filter.allText }}
-    option(v-for="item in filter.item", :key="item['@key']", :value="item['@key']", :selected="selected(item)") {{ item['@value'] }}
+    filter-item(v-for="item in filter.item", :item="item", :filter="filter", :key="item['@key']")
 </template>
 
 <script>
   import { mapState } from 'vuex'
+  import filterItem from './filter-item'
 
   export default {
     props: {
@@ -18,19 +19,16 @@
 
     computed: {
       nothingSelected () { return this.filters[this.filter.dimension] === undefined },
-      ...mapState(['filters'])
+      ...mapState(['filters', 'feed'])
     },
 
     methods: {
       setFilter () {
         this.$store.commit('filter', {dimension: this.filter.dimension, value: this.$refs.select.value})
-      },
-
-      selected (item) {
-        return Object.entries(this.filters)
-          .find(([dimension, value]) => this.filter.dimension === dimension && item['@key'] === value)
       }
-    }
+    },
+
+    components: {filterItem}
   }
 </script>
 
